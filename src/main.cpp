@@ -1,5 +1,6 @@
+#include <Arduino.h>
 #include <Stepper.h>
-#include "Adafruit_VCNL4010.h"
+#include <Adafruit_VCNL4010.h>
 
 Adafruit_VCNL4010 proximity;
 
@@ -13,13 +14,15 @@ void setup() {
  
   Serial.begin(9600);
 
-   if (! vcnl.begin()){
+   if (! proximity.begin()){
     Serial.println("Sensor not found :(");
-    while (1);
+    //while (1);
+  } else {
+    Serial.println("Found vcnl4010");
   }
-  Serial.println("Found VCNL4010");
+
   Serial.println("Initializing stepper");
-  myStepper.setSpeed(5);
+  myStepper.setSpeed(10);
 }
 void loop() {
   // Step one revolution in one direction:
@@ -32,6 +35,6 @@ void loop() {
   myStepper.step(-stepsPerRevolution);
   delay(500);
 
-  Serial.print("Ambient: "); Serial.println(vcnl.readAmbient());
-  Serial.print("Proximity: "); Serial.println(vcnl.readProximity());
+  // Serial.print("Ambient: "); Serial.println(proximity.readAmbient());
+  // Serial.print("Proximity: "); Serial.println(proximity.readProximity());
 }
