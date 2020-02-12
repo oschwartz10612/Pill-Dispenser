@@ -5,7 +5,7 @@
 Adafruit_VCNL4010 proximity;
 
 // Define number of steps per rotation:
-const int stepsPerRevolution = 512;
+const int stepsPerRevolution = 345;
 int prevProx;
 int prevAmb;
 int counter = 0;
@@ -23,7 +23,7 @@ void setup() {
   }
 
   Serial.println("Initializing stepper");
-  myStepper.setSpeed(10);
+  myStepper.setSpeed(20);
   prevProx = proximity.readProximity();
 }
 void loop() {
